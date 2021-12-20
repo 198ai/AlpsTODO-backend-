@@ -56,17 +56,17 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required'=>'用户ID必须填写',
-            'id.exists'=>'用户不存在',
-            'name.unique' => '用户名已经存在',
-            'name.required' => '用户名不能为空',
-            'name.max' => '用户名最大长度为10个字符',
-            'password.required' => '密码不能为空',
-            'password.max' => '密码长度不能超过16个字符',
-            'password.min' => '密码长度不能小于6个字符',
-            'email.required' => '邮箱不能为空',
-            'email.max' => '邮箱长度不能超过45个字符',
-            'email.unique' => '邮箱已经存在',
+            'id.required'=>'ユーザ名は必須項目です',
+            'id.exists'=>'ユーザは存在していません',
+            'name.unique' => 'ユーザはすでに存在しています',
+            'name.required' => 'ユーザ名は必須項目です',
+            'name.max' => 'ユーザ名の文字数は10以内となっております',
+            'password.required' => '暗証番号は必須項目です',
+            'password.max' => '暗証番号の文字数は16以内となっております',
+            'password.min' => 'パスワードの長さは6文字以上です',
+            'email.required' => 'メールアドレスは必須項目です',
+            'email.max' => 'メールアドレスの文字数は45以内となっております',
+            'email.unique' => 'メールアドレスはすでに存在しています',
         ];
 
 

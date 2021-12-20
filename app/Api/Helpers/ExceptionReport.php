@@ -105,6 +105,6 @@ class ExceptionReport
         return $this->failed($message[0],$message[1]);
     }
     public function prodReport(){
-        return $this->failed('服务器错误','500');
+        return $this->failed('サーバーエラーが発生しました','500');
     }
 }
