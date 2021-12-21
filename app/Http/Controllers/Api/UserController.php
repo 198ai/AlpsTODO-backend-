@@ -15,17 +15,26 @@ class UserController extends Controller
     public function index(){
          //3个用户为一页
          $users = User::paginate(8);
-         return UserResource::collection($users);
+         $UsersInfo= UserResource::collection($users);
+         return response()->json(
+            $UsersInfo,
+            200,[],
+            JSON_UNESCAPED_UNICODE
+        )->header('Content-Type','application/json; charset=UTF-8');
     }
      //返回单一用户信息
      public function show(User $user){
-        return $this->success(new UserResource($user));
-        
+        $UsersInfo = $this->success(new UserResource($user));
+        return response()->json(
+            $UsersInfo,
+            200,[],
+            JSON_UNESCAPED_UNICODE
+        )->header('Content-Type','application/json; charset=UTF-8');
     }
     //用户注册
     public function store(UserRequest $request){
         $users =User::create($request->all());
-        return $this->setStatusCode(201)->success('ログイン成功です',$users);
+        return $this->setStatusCode(200)->success('ログイン成功です',$users);
     }
     // //用户登录
     // public function login(Request $request){
@@ -36,11 +45,11 @@ class UserController extends Controller
     //     return $this->failed('用户登录失败',401);
     // }
     //用户登录
-public function login(Request $request){
+    public function login(Request $request){
     $token=Auth::guard('api')->attempt(['name'=>$request->name,'password'=>$request->password]);
     if($token) {
         $userData =Auth::guard('api')->user();
-        return $this->setStatusCode(201)->success(['token' => 'bearer ' . $token,'userData' => $userData]);
+        return $this->setStatusCode(200)->success(['token' => 'bearer ' . $token,'userData' => $userData]);
        
     }
     return $this->failed('暗証番号かユーザ名が間違っています',400);
@@ -52,8 +61,8 @@ public function login(Request $request){
     }
     //返回当前登录用户信息
     public function info(){
-        $user = Auth::guard('api')->user();
-        return $this->success(new UserResource($user));
+        //$user = Auth::guard('api')->user();
+        //return $this->success(new UserResource($user));
         $deadlineInfo = DB::table('deadline')
         ->select('deadline.id as deadlineId','title','plantime','endtime','complete')
         ->get();
